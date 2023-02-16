@@ -1,0 +1,21 @@
+<hr />
+<div style="text-align: center">
+  <button style="cursor: pointer" (click)="irAgregar()">+</button>
+</div>
+
+<div class="flex-container">
+  <div class="card" style="width: 18rem" *ngFor="let cards of cardList">
+    <img [src]= "cards.image" class="card-img-top" alt="img" />
+    <div class="card-body">
+      <h5 class="card-title">{{ cards.titulo }}</h5>
+      <p class="card-text">
+        {{ cards.descripcion }}
+      </p>
+      <a href="#" class="btn btn-primary">ver mas</a>
+    </div>
+  </div>
+</div>
+
+<router-outlet></router-outlet>
+
+

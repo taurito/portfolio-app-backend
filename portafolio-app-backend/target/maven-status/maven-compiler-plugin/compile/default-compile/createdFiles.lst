@@ -1,0 +1,6 @@
+data\CardDaoImpl.class
+web\CorsFilter.class
+web\JAXRSActivador.class
+service\CardServiceRS.class
+domain\CardWork.class
+data\CardDao.class
