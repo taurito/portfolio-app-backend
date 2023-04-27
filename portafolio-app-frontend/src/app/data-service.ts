@@ -1,6 +1,7 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { CardWorkModel } from "./card-work.model";
+import { Observable } from 'rxjs';
 
 @Injectable()
 export class DataService {
@@ -27,7 +28,7 @@ export class DataService {
       });
   }
 
-  eliminarCrdWork(idCardWork: number){
+  eliminarCardWork(idCardWork: number){
     let url: string;
     url = this.urlBase + '/' + idCardWork;
 

@@ -5,17 +5,20 @@
 
 <div class="flex-container">
   <div class="card" style="width: 18rem" *ngFor="let cards of cardList">
-    <img [src]= "cards.image" class="card-img-top" alt="img" />
+    <img src="assets/img/{{cards.image}}" class="card-img-top" alt="img" />
     <div class="card-body">
       <h5 class="card-title">{{ cards.titulo }}</h5>
       <p class="card-text">
         {{ cards.descripcion }}
       </p>
-      <a href="#" class="btn btn-primary">ver mas</a>
+    </div>
+    <div class="card-footer">
+      <div class="container">
+        <button type="button" class="btn btn-outline-primary" [routerLink]="['/cardWorks', cards.idCardWork]">Editar</button>
+      <button type="button" class="btn btn-outline-danger" (click)="eliminarCard(cards)">Eliminar</button>
+      </div>
     </div>
   </div>
 </div>
 
 <router-outlet></router-outlet>
-
-

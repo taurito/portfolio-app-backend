@@ -1,3 +1,4 @@
+import { SubirArchivoService } from './subirArchivo-service';
 import { NgModule } from '@angular/core';
 
 import { BrowserModule } from '@angular/platform-browser';
@@ -27,7 +28,7 @@ import { FormularioComponent } from './formulario/formulario.component';
     FormsModule,
     HttpClientModule
   ],
-  providers: [DataService, CardService],
+  providers: [DataService, CardService, SubirArchivoService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

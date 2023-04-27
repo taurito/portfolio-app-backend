@@ -1,7 +1,8 @@
+import { SubirArchivoService } from './../subirArchivo-service';
 import { CardWorkModel } from './../card-work.model';
 import { Router, ActivatedRoute } from '@angular/router';
 import { CardService } from './../card-service';
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit, Output } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 
 @Component({
@@ -12,35 +13,55 @@ import { DomSanitizer } from '@angular/platform-browser';
 export class FormularioComponent implements OnInit {
 
   idCardWork: number;
-  tituloInput: string;
-  DesTextAreA: string;
-  RefInput: string;
+  tituloInput: String;
+  imageInput: String;
+  DesTextAreA: String;
+  RefInput: String;
 
-  public archivoCapturado: any;
+  public file: File;
   public previsualizacion: string;
 
-  constructor(private cardService: CardService, private router: Router, private rout:ActivatedRoute, private sanitizer: DomSanitizer) { }
+
+  constructor(private cardService: CardService,
+              private router: Router,
+              private route:ActivatedRoute,
+              private sanitizer: DomSanitizer,
+              private subirArchivoService: SubirArchivoService) {
+              }
 
   ngOnInit(): void {
+    this.idCardWork = this.route.snapshot.params['idCardWork'];
+    if(this.idCardWork != null){
+      const card = this.cardService.encontrarCardWork(this.idCardWork);
+      if(card != null){
+        this.tituloInput = card.titulo;
+        this.imageInput = card.image;
+        this.DesTextAreA = card.descripcion;
+        this.RefInput = card.referencia;
+        console.log("card encontrado:" + this.imageInput);
+      }
+    }
   }
   capturarFile(event: any){
-    this.archivoCapturado = event.target.files[0];
-    this.extraerBase64(this.archivoCapturado).then((imagenDeco: any) =>{
+    this.file = event.target.files[0];
+    this.extraerBase64(this.file).then((imagenDeco: any) =>{
       this.previsualizacion = imagenDeco.base;
-      console.log(imagenDeco);
-      console.log(this.archivoCapturado);
-      //console.log(imagenDeco.base);
+      this.imageInput = this.file.name;
+      console.log(this.file.name);
 
     })
-    //this.archivos.push(archivoCapturado);
-    //console.log(event.target.files);
   }
 
-  onGuardarPersona(){
-    const cardGuardar = new CardWorkModel(this.idCardWork, this.tituloInput, this.previsualizacion ,this.DesTextAreA, this.RefInput);
-    this.cardService.agregarCardWork(cardGuardar);
+  onGuardarWork(){
+    //this.subirArchivoService.subirImagen(this.file);
+    const cardGuardar = new CardWorkModel(this.idCardWork, this.tituloInput, this.imageInput ,this.DesTextAreA, this.RefInput);
+    if(this.idCardWork != null){
+      this.cardService.modificarCardWork(this.idCardWork, cardGuardar);
+    }
+    else{
+      this.cardService.agregarCardWork(cardGuardar);
+    }
     this.router.navigate(['cardWorks']);
-    console.log(cardGuardar);
   }
 
   cerrarFormulario(){

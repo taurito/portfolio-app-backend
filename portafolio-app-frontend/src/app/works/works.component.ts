@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CardService } from '../card-service';
 import { CardWorkModel } from '../card-work.model';
+import { DomSanitizer } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-works',
@@ -11,7 +12,9 @@ import { CardWorkModel } from '../card-work.model';
 export class WorksComponent implements OnInit {
 
   cardList: CardWorkModel[] = [];
-  constructor(private cardService: CardService, private router: Router, private route: ActivatedRoute) { }
+  idCardWork : number;
+  cardEncontrado?: CardWorkModel;
+  constructor(private cardService: CardService, private router: Router, private route: ActivatedRoute, private sanitizer: DomSanitizer) {}
 
   ngOnInit(): void {
     this.cardService.obtenerCardWork()
@@ -27,5 +30,13 @@ export class WorksComponent implements OnInit {
 
   irAgregar(){
     this.router.navigate(['./cardWorks/agregar']);
+  }
+  eliminarCard(card: CardWorkModel){
+    const eliminar = confirm('Estas seguro de eliminar?');
+    if(eliminar){
+      this.cardService.eliminarCardWork(card.idCardWork);
+      this.router.navigate(['cardWorks']);
+      location.reload();
+    }
   }
 }

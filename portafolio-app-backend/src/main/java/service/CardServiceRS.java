@@ -50,7 +50,7 @@ public class CardServiceRS {
     public Response modificarCard(@PathParam("id") int id, CardWork cardModificada){
         CardWork card = cardDao.encontrarCard(new CardWork(id));
         if(card != null){
-            cardDao.actualizarCard(cardModificada);
+            cardDao.actualizarCard(cardModificada   );
             System.out.println("cardWork modificada:" + cardModificada);
             return Response.ok().entity(cardModificada).build();
         }

@@ -1,11 +1,10 @@
-button {
-  min-height: 50px;
-  border-radius: 50%;
-  border-color: transparent;
-  background-color: #3F51B5;
-  color: #fff;
-  font-size: 30px;
-  margin-left: 6px;
-  margin-right: 6px;
-  border-width: 0;
+.card-footer{
+  background-color: #fff;
+  border-top: #fff;
+}
+
+.container{
+  display: flex;
+  justify-content: flex-end;
+  gap:10px;
 }

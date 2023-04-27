@@ -43,6 +43,9 @@ export class CardService {
     const cardModificadaLocal = this.cardList.find(card => card.idCardWork == id);
     cardModificadaLocal!.idCardWork = card.idCardWork;
     cardModificadaLocal!.titulo = card.titulo;
+    cardModificadaLocal!.image = card.image;
+    cardModificadaLocal!.descripcion = card.descripcion;
+    cardModificadaLocal!.referencia = card.referencia;
     this.dataService.modificarCardWork(id, card);
   }
 
@@ -50,6 +53,12 @@ export class CardService {
     console.log('eliminar card con id:' + id);
     const index = this.cardList.findIndex(card => card.idCardWork == id); //encontramos el indice en el arreglo
     this.cardList.slice(index, 1);
-    this.dataService.eliminarCrdWork(id);
+    const cardEliminado = this.cardList.find(card => card.idCardWork == id);
+    cardEliminado!.idCardWork = 0;
+    cardEliminado!.titulo = " ";
+    cardEliminado!.image = " ";
+    cardEliminado!.descripcion = " ";
+    cardEliminado!.referencia = " ";
+    this.dataService.eliminarCardWork(id);
   }
 }

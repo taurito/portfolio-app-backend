@@ -6,7 +6,8 @@ import { WorksComponent } from './works/works.component';
 const routes: Routes = [
   {path: '', component: WorksComponent},
   {path: 'cardWorks', component: WorksComponent, children:[
-    {path:'agregar', component: FormularioComponent}
+    {path:'agregar', component: FormularioComponent},
+    {path:':idCardWork', component: FormularioComponent}
   ]}
 ];
 

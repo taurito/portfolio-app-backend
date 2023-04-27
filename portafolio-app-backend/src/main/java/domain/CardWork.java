@@ -15,7 +15,11 @@ public class CardWork implements Serializable{
     private int idCardWork;
     
     private String titulo;
+    
+    //@Lob
+    //@Column(name = "image", columnDefinition="LONGBLOB")
     private String image;
+    
     private String descripcion;
     private String referencia;
 
@@ -71,7 +75,7 @@ public class CardWork implements Serializable{
 
     public void setReferencia(String referencia) {
         this.referencia = referencia;
-    }
+    } 
 
     @Override
     public String toString() {
