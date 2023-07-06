@@ -1,0 +1,26 @@
+<header id="header">
+  <div class="container_header">
+      <div class="logo">
+          <img src="assets/img/logo1.png" alt="">
+      </div>
+      <div class="container_nav">
+          <nav id="nav">
+              <ul>
+                  <li><a href="#">INICIO</a></li>
+                  <li><a routerLink="/sobreMi">SOBRE MI</a></li>
+                  <li><a href="#">PORTFOLIO</a></li>
+                  <li><a href="#">CONTACTO</a></li>
+                  <li *ngIf="!userLoginOn"><button type="button" class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                    Iniciar sesión
+                  </button></li>
+                  <li *ngIf="userLoginOn"><button type="button" class="btn btn-outline-danger" data-bs-toggle="modal" >
+                    Cerrar sesión
+                  </button></li>
+              </ul>
+          </nav>
+      </div>
+  </div>
+</header>
+
+
+
