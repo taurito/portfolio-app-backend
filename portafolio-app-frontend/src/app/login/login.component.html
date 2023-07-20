@@ -9,12 +9,12 @@
         <form [formGroup]="loginForm">
           <p class="text-danger">{{loginError}}</p>
           <div class="mb-3">
-            <label for="exampleInputEmail1" class="form-label">Usuario</label>
-            <input formControlName="usuario" type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
-              <div *ngIf="usuario.invalid && (usuario.dirty || usuario.touched)"
+            <label for="exampleInputEmail1" class="form-label">Email</label>
+            <input formControlName="email" type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+              <div *ngIf="email.invalid && (email.dirty || email.touched)"
                 class="text-danger">
 
-                <div *ngIf="usuario.errors?.['required']">
+                <div *ngIf="email.errors?.['required']">
                   El usuario es requerido.
                 </div>
 
@@ -33,8 +33,8 @@
             </div>
           </div>
           <div class="btns_confirm">
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" (click)="cerrar()">Cerrar</button>
             <button type="submit" (click)="login()" class="btn btn-primary">Iniciar</button>
+            <button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#exampleModalRe">Registrarse</button>
           </div>
         </form>
       </div>

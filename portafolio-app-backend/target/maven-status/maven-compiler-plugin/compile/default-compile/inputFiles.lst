@@ -1,6 +1,10 @@
 C:\SAUL_JM\portfolio\portafolio-app-backend\src\main\java\domain\CardWork.java
 C:\SAUL_JM\portfolio\portafolio-app-backend\src\main\java\data\CardDaoImpl.java
+C:\SAUL_JM\portfolio\portafolio-app-backend\src\main\java\service\UserServiceRS.java
+C:\SAUL_JM\portfolio\portafolio-app-backend\src\main\java\data\UserDaoImpl.java
 C:\SAUL_JM\portfolio\portafolio-app-backend\src\main\java\web\JAXRSActivador.java
 C:\SAUL_JM\portfolio\portafolio-app-backend\src\main\java\data\CardDao.java
+C:\SAUL_JM\portfolio\portafolio-app-backend\src\main\java\domain\User.java
 C:\SAUL_JM\portfolio\portafolio-app-backend\src\main\java\web\CorsFilter.java
 C:\SAUL_JM\portfolio\portafolio-app-backend\src\main\java\service\CardServiceRS.java
+C:\SAUL_JM\portfolio\portafolio-app-backend\src\main\java\data\UserDao.java

@@ -1,6 +1,10 @@
 data\CardDaoImpl.class
 web\CorsFilter.class
+data\UserDao.class
 web\JAXRSActivador.class
+data\UserDaoImpl.class
 service\CardServiceRS.class
 domain\CardWork.class
 data\CardDao.class
+domain\User.class
+service\UserServiceRS.class

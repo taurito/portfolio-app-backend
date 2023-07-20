@@ -13,7 +13,7 @@ button:hover{
 	cursor: pointer;
 }
 .footer{
-  
+
   text-align: center;
   bottom: 0;
   width: 100%;
@@ -52,10 +52,3 @@ ul {
   margin-top: 30px;
 }
 
-.container_fondo{
-  background-image: url(src/assets/img/fondo-home.jpg);
-  margin: auto;
-  background-position: center center;
-  background-repeat: no-repeat;
-  background-size: 100% 100%;
-}

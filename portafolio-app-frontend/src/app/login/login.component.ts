@@ -1,8 +1,8 @@
+import { LoginRequest } from './../services/auth/loginRequest';
 import { LoginService } from './../services/auth/login.service';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { LoginRequest } from '../services/auth/loginRequest';
 declare var $: any;
 
 @Component({
@@ -14,7 +14,7 @@ export class LoginComponent implements OnInit {
 
   loginError:string="";
   loginForm = this.formBuilder.group({
-    usuario:['', [Validators.required]],
+    email:['', [Validators.required]],
     password:['', [Validators.required]],
   })
   constructor(private formBuilder:FormBuilder, private router: Router, private loginService:LoginService) { }
@@ -22,8 +22,8 @@ export class LoginComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  get usuario(){
-    return this.loginForm.controls.usuario;
+  get email(){
+    return this.loginForm.controls.email;
   }
   get password(){
     return this.loginForm.controls.password;
@@ -53,7 +53,6 @@ export class LoginComponent implements OnInit {
       alert("error al ingresar los datos")
     }
   }
-
 
   cerrar(){
     this.loginForm.reset();

@@ -18,6 +18,7 @@ import { HomeComponent } from './home/home.component';
 import { HeaderComponent } from './header/header.component';
 import { SobreMiComponent } from './sobre-mi/sobre-mi.component';
 import { LoginComponent } from './login/login.component';
+import { RegistroUsuarioComponent } from './registro-usuario/registro-usuario.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { LoginComponent } from './login/login.component';
     HomeComponent,
     HeaderComponent,
     SobreMiComponent,
-    LoginComponent
+    LoginComponent,
+    RegistroUsuarioComponent
   ],
   imports: [
     BrowserModule,

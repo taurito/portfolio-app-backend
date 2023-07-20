@@ -3,6 +3,7 @@
 .container_global{
   width: 100%;
   height: auto;
+  padding-top: 5%
 }
 .container_second{
   max-width: 60%;

@@ -4,24 +4,35 @@ import { LoginRequest } from './loginRequest';
 import { BehaviorSubject, Observable, catchError, tap, throwError } from 'rxjs';
 import { User } from './user';
 
+
 @Injectable({
   providedIn: 'root'
 })
 export class LoginService {
 
+  userList: User[] = [];
+
   currentUserLoginOn: BehaviorSubject<boolean>= new BehaviorSubject<boolean>(false);
-  currentUserData:BehaviorSubject<User> = new BehaviorSubject<User>({id:0, userName:''});
+  currentUserData:BehaviorSubject<User> = new BehaviorSubject<User>({idUser:0, email:''});
 
   constructor(private http:HttpClient) { }
 
-  login(credentials:LoginRequest):Observable<User>{
-    return this.http.get<User>('././assets/data.json').pipe(
+  urlBase = "http://localhost:8080/portafolio-app-backend/webservice/user";
+
+  login(userLogin:LoginRequest):Observable<User>{
+
+    let url: string;
+    url = this.urlBase + '/' + userLogin.email + '/' + userLogin.password;
+    return  this.http.get<User>(url).pipe(
       tap((userData:User)=>{
-        this.currentUserData.next(userData);
-        this.currentUserLoginOn.next(true);
+
+            this.currentUserLoginOn.next(true);
+            this.currentUserData.next(userData);
+
       }),
       catchError(this.handleError)
     )
+
   }
 
   private handleError(error:HttpErrorResponse){
@@ -40,4 +51,6 @@ export class LoginService {
   get userLoginOn():Observable<boolean>{
     return this.currentUserLoginOn.asObservable();
   }
+
+
 }
