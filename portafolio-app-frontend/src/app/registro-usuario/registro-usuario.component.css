@@ -1,0 +1,45 @@
+/*.bi-eye-slash{
+  position: absolute;
+  top: 58%;
+  right: 5%;
+  transform: translateY(-50%);
+  cursor: pointer;
+  width: 24px;
+  height: 24px;
+}
+
+.bi-eye{
+  position: absolute;
+  top: 58%;
+  right: 5%;
+  transform: translateY(-50%);
+  cursor: pointer;
+  width: 24px;
+  height: 24px;
+}*/
+
+.itemsButton{
+  display: flex;
+  justify-content: flex-end;
+}
+.btn-primary{
+  margin-left: 20px;
+}
+
+.ng-valid:not(form)  {
+  border-left: 5px solid #42A948; /* green */
+}
+
+.ng-invalid:not(form)  {
+  border-left: 5px solid #a94442; /* red */
+}
+
+.imputIcon{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+.imputIcon i{
+  position: absolute;
+  margin-left: 86%;
+}

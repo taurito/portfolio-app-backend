@@ -1,24 +1,27 @@
 <hr />
-<div style="text-align: center">
-  <button style="cursor: pointer" (click)="irAgregar()">+</button>
-</div>
+<div class="globa-container">
+  <div style="text-align: center">
+    <button style="cursor: pointer" (click)="irAgregar()">+</button>
+  </div>
 
-<div class="flex-container">
-  <div class="card" style="width: 18rem" *ngFor="let cards of cardList">
-    <img src="assets/img/{{cards.image}}" class="card-img-top" alt="img" />
-    <div class="card-body">
-      <h5 class="card-title">{{ cards.titulo }}</h5>
-      <p class="card-text">
-        {{ cards.descripcion }}
-      </p>
-    </div>
-    <div class="card-footer">
-      <div class="container">
-        <button type="button" class="btn btn-outline-primary" [routerLink]="['/cardWorks', cards.idCardWork]">Editar</button>
-      <button type="button" class="btn btn-outline-danger" (click)="eliminarCard(cards)">Eliminar</button>
+  <div class="flex-container">
+    <div class="card" style="width: 18rem" *ngFor="let cards of cardList">
+      <img src="assets/img/{{cards.image}}" class="card-img-top" alt="img" />
+      <div class="card-body">
+        <h5 class="card-title">{{ cards.titulo }}</h5>
+        <p class="card-text">
+          {{ cards.descripcion }}
+        </p>
+      </div>
+      <div class="card-footer">
+        <div class="container">
+          <button type="button" class="btn btn-outline-primary" [routerLink]="['/cardWorks', cards.idCardWork]">Editar</button>
+        <button type="button" class="btn btn-outline-danger" (click)="eliminarCard(cards)">Eliminar</button>
+        </div>
       </div>
     </div>
   </div>
 </div>
+
 
 <router-outlet></router-outlet>

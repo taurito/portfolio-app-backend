@@ -19,7 +19,7 @@ export class LoginService {
 
   urlBase = "http://localhost:8080/portafolio-app-backend/webservice/user";
 
-  login(userLogin:LoginRequest):Observable<User>{
+  buscarUsuario(userLogin:LoginRequest):Observable<User>{
 
     let url: string;
     url = this.urlBase + '/' + userLogin.email + '/' + userLogin.password;
@@ -33,6 +33,10 @@ export class LoginService {
       catchError(this.handleError)
     )
 
+  }
+
+  agregarUsuario(usuario:User){
+    return this.http.post(this.urlBase, usuario);
   }
 
   private handleError(error:HttpErrorResponse){

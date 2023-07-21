@@ -1,16 +1,89 @@
 <div class="modal fade" id="exampleModalRe" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered">
+<link
+  rel="stylesheet"
+  href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css"
+/>
+
     <div class="modal-content">
       <div class="modal-header">
         <h1 class="modal-title fs-5" id="exampleModalLabel">Registro Usuario</h1>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        ...
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-        <button type="button" class="btn btn-primary">Guardar</button>
+        <form [formGroup]="registerForm" (ngSubmit)="registrarUsuario()">
+          <div>
+            <label for="imputName" class="form-label">Nombre Usuario</label>
+            <input formControlName ="userName" type="text" class="form-control" id="imputName">
+            <div *ngIf="userName.invalid && (userName.dirty || userName.touched)"
+                class="text-danger">
+
+                <div *ngIf="userName.errors?.['required']">
+                  El usuario es requerido.
+                </div>
+
+              </div>
+          </div>
+          <div class="mb-3">
+            <label for="inputEmail" class="form-label">Correo electrónico</label>
+            <input formControlName ="email" type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+            <div *ngIf="email.invalid && (email.dirty || email.touched)"
+                class="text-danger">
+
+                <div *ngIf="email.errors?.['required']">
+                  El email es requerido.
+                </div>
+                <div *ngIf="email.errors?.['email']">
+                  El email debe tener un formato valido.
+                </div>
+
+              </div>
+            <div id="emailHelp" class="form-text">Nunca compartiremos su correo electrónico con nadie más.</div>
+          </div>
+          <div class="mb-3">
+            <label for="password" class="form-label">Contraseña</label>
+            <div class="imputIcon">
+              <input formControlName ="password" type="password" class="form-control" id="passwordField">
+              <i *ngIf="!passwordVisible" class="bi bi-eye-slash" id="toggleIcon" (click)="mostrarContrasena()"></i>
+              <i *ngIf="passwordVisible" class="bi bi-eye" id="toggleIcon" (click)="mostrarContrasena()"></i>
+            </div>
+            <div *ngIf="password.invalid && (password.dirty || password.touched)"
+                class="text-danger">
+
+                <div *ngIf="password.errors?.['required']">
+                  la contraseña es requerido.
+                </div>
+
+              </div>
+          </div>
+          <div class="mb-3 form-check">
+            <input formControlName="checkbox" type="checkbox" class="form-check-input" id="exampleCheck1">
+            <label class="form-check-label" for="exampleCheck1">Verifica tu contraseña</label>
+            <div *ngIf="checkbox.invalid && checkbox.touched" class="text-danger">
+              <span class="error-message">Debes aceptar los términos y condiciones</span>
+            </div>
+          </div>
+          <div class="mb-3">
+            <select formControlName ="rol" class="form-select" aria-label="select example">
+              <option value="">Elige un rol</option>
+              <option value="1">Administrador</option>
+              <option value="2">invitado</option>
+              <option value="3">Usuario</option>
+            </select>
+            <div *ngIf="rol.invalid && (rol.dirty || rol.touched)"
+                class="text-danger">
+
+                <div *ngIf="rol.errors?.['required']">
+                  El rol es requerido.
+                </div>
+
+              </div>
+          </div>
+          <div class="itemsButton">
+            <button type="button" class="btn btn-secondary" (click)="cancelar()">Cancelar</button>
+            <button type="submit" class="btn btn-primary"  [disabled]="registerForm.invalid">Registrar</button>
+          </div>
+        </form>
       </div>
     </div>
   </div>

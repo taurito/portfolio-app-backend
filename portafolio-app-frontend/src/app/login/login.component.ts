@@ -31,7 +31,7 @@ export class LoginComponent implements OnInit {
 
   login(){
     if(this.loginForm.valid){
-      this.loginService.login(this.loginForm.value as LoginRequest).subscribe({
+      this.loginService.buscarUsuario(this.loginForm.value as LoginRequest).subscribe({
         next: (userData)=> {
           console.log(userData);
         },
@@ -56,5 +56,6 @@ export class LoginComponent implements OnInit {
 
   cerrar(){
     this.loginForm.reset();
+
   }
 }
