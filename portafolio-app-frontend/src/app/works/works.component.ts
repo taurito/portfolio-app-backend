@@ -35,8 +35,10 @@ export class WorksComponent implements OnInit {
     const eliminar = confirm('Estas seguro de eliminar?');
     if(eliminar){
       this.cardService.eliminarCardWork(card.idCardWork);
-      this.router.navigate(['cardWorks']);
-      location.reload();
+      const cardEliminar = this.cardService.encontrarCardWork(card.idCardWork);
+      const filteredArray = this.cardList.filter((item) => item !== cardEliminar);
+      this.router.navigate(['admin/trabajos']);
     }
+    
   }
 }

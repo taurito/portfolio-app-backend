@@ -1,9 +1,9 @@
 <header id="header">
   <div class="container_header">
-      <div class="logo">
+      <div *ngIf="!userLoginOn"  class="logo">
           <img src="assets/img/logo1.png" alt="">
       </div>
-      <div class="container_nav">
+      <div *ngIf="!userLoginOn"  class="container_nav">
           <nav id="nav">
               <ul>
                   <li><a href="#">INICIO</a></li>

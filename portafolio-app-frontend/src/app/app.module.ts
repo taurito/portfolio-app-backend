@@ -19,6 +19,11 @@ import { HeaderComponent } from './header/header.component';
 import { SobreMiComponent } from './sobre-mi/sobre-mi.component';
 import { LoginComponent } from './login/login.component';
 import { RegistroUsuarioComponent } from './registro-usuario/registro-usuario.component';
+import { AdministradorComponent } from './fileAdmin/administrador/administrador.component';
+import { InfoGeneralComponent } from './fileAdmin/info-general/info-general.component';
+import { TrabajosComponent } from './fileAdmin/trabajos/trabajos.component';
+import { UsuariosComponent } from './fileAdmin/usuarios/usuarios.component';
+import { FooterComponent } from './footer/footer.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +34,12 @@ import { RegistroUsuarioComponent } from './registro-usuario/registro-usuario.co
     HeaderComponent,
     SobreMiComponent,
     LoginComponent,
-    RegistroUsuarioComponent
+    RegistroUsuarioComponent,
+    AdministradorComponent,
+    InfoGeneralComponent,
+    TrabajosComponent,
+    UsuariosComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,

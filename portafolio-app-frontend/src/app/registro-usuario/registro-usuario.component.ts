@@ -61,7 +61,8 @@ export class RegistroUsuarioComponent implements OnInit {
   registrarUsuario(){
     if(this.registerForm.valid){
       const usuario = this.registerForm.value as User;
-      const usuarioGuardar = new User(this.idUser, usuario.userName, usuario.email, usuario.password, usuario.rol)
+      const usuarioGuardar = new User(this.idUser, usuario.userName, usuario.email, usuario.password, usuario.rol);
+      console.log(usuarioGuardar);
       this.loginService.agregarUsuario(usuarioGuardar).subscribe({
         next:(userData)=>{
           console.log("formulario guardado:" + userData);

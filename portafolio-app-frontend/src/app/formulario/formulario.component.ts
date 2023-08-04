@@ -4,6 +4,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { CardService } from './../card-service';
 import { Component, Input, OnInit, Output } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
+declare var $: any;
 
 @Component({
   selector: 'app-formulario',
@@ -61,11 +62,12 @@ export class FormularioComponent implements OnInit {
     else{
       this.cardService.agregarCardWork(cardGuardar);
     }
-    this.router.navigate(['cardWorks']);
+    $("#exampleModal").modal('hide');
+    this.router.navigate(['admin/trabajos']);
   }
 
   cerrarFormulario(){
-    this.router.navigate(['cardWorks']);
+    this.router.navigate(['admin/trabajos']);
   }
 
   extraerBase64 = async ($event:any) => new Promise((resolve, reject) => {

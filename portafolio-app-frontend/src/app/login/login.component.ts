@@ -41,7 +41,7 @@ export class LoginComponent implements OnInit {
         },
         complete: () =>{
           console.info("Login completo");
-          this.router.navigate(['./sobreMi']);
+          this.router.navigate(['./admin']);
           $("#exampleModal").modal('hide');
           this.loginForm.reset();
         }
