@@ -8,6 +8,7 @@ import { LoginComponent } from './login/login.component';
 import { AdministradorComponent } from './fileAdmin/administrador/administrador.component';
 import { InfoGeneralComponent } from './fileAdmin/info-general/info-general.component';
 import { TrabajosComponent } from './fileAdmin/trabajos/trabajos.component';
+import { UsuariosComponent } from './fileAdmin/usuarios/usuarios.component';
 
 const routes: Routes = [
   /*{path:'', component: WorksComponent},
@@ -28,7 +29,8 @@ const routes: Routes = [
   ]},
   {path:'admin', component:AdministradorComponent, children:[
     {path: 'general', component:InfoGeneralComponent},
-    {path: 'trabajos', component:TrabajosComponent}
+    {path: 'trabajos', component:TrabajosComponent},
+    {path: 'usuarios', component: UsuariosComponent}
   ]}
 
 ];

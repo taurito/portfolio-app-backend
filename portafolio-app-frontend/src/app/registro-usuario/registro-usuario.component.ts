@@ -3,6 +3,7 @@ import { FormBuilder, Validators } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { LoginService } from '../services/auth/login.service';
+import { UserService } from '../services/user/user.service';
 declare var $: any;
 
 @Component({
@@ -11,8 +12,10 @@ declare var $: any;
   styleUrls: ['./registro-usuario.component.css']
 })
 export class RegistroUsuarioComponent implements OnInit {
-  idUser:number;
+  noMostrar:boolean = false;
+  rolUsuario:string = '';
   registerForm = this.formBuilder.group({
+    idUser:[0],
     userName:['', [Validators.required]],
     email:['', [Validators.required, Validators.email]],
     password:['', [Validators.required]],
@@ -20,9 +23,28 @@ export class RegistroUsuarioComponent implements OnInit {
     rol:['', [Validators.required]]
   })
   passwordVisible:boolean = false;
-  constructor(private formBuilder:FormBuilder, private router:Router, private loginService:LoginService) { }
+  constructor(private formBuilder:FormBuilder, private router:Router, private loginService:LoginService, private userService: UserService) { }
 
   ngOnInit(): void {
+    this.userService.usuarioObvs.subscribe(usuario =>{
+      const idUser = usuario.idUser;
+      if(idUser != null){
+        const usuarioEncontrado = this.userService.encontrarUsuario(idUser);
+        if(usuario != null){
+          const user = {
+            idUser: usuarioEncontrado?.idUser,
+            userName: usuarioEncontrado?.userName,
+            email: usuarioEncontrado?.email,
+            password: usuarioEncontrado?.password,
+            rol: usuarioEncontrado?.rol
+          }
+
+          this.registerForm.patchValue(user);
+          console.log(this.registerForm.value)
+          console.log(usuarioEncontrado);
+        }
+      }
+    });
   }
 
   get userName(){
@@ -61,29 +83,32 @@ export class RegistroUsuarioComponent implements OnInit {
   registrarUsuario(){
     if(this.registerForm.valid){
       const usuario = this.registerForm.value as User;
-      const usuarioGuardar = new User(this.idUser, usuario.userName, usuario.email, usuario.password, usuario.rol);
+      if(usuario.rol === '1'){
+          this.rolUsuario = 'administrador';
+      }else{
+        if(usuario.rol === '2') this.rolUsuario = 'invitado';
+        else if(usuario.rol === '3') this.rolUsuario = 'usuario'
+      }
+      const usuarioGuardar = new User(usuario.idUser, usuario.userName, usuario.email, usuario.password, this.rolUsuario);
       console.log(usuarioGuardar);
-      this.loginService.agregarUsuario(usuarioGuardar).subscribe({
-        next:(userData)=>{
-          console.log("formulario guardado:" + userData);
-        },
-        error: (errorData) =>{
-          console.log("error de guardado" + errorData)
-        },
-        complete: () =>{
-          console.log(usuarioGuardar);
-          this.router.navigateByUrl('/home');
-          $("#exampleModalRe").modal('hide');
-          this.registerForm.reset();
-        }
-      })
 
+      if(usuario.idUser != null){
+        this.userService.modificarUsuario(usuario.idUser, usuarioGuardar);
+        console.log('Se modifico el usuario:' + this.userName);
+      }
+      else{
+        this.userService.agregarUsuario(usuarioGuardar);
+        console.log('Se agrego el usuario:' + this.userName)
+      }
+      this.router.navigateByUrl('/admin/usuarios');
+      $("#exampleModalRe").modal('hide');
+      this.registerForm.reset();
     }
   }
 
   cancelar(){
     this.registerForm.reset();
-    this.router.navigate(['./home']);
+    this.router.navigate(['./admin/usuarios']);
     $("#exampleModalRe").modal('hide');
   }
 

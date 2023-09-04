@@ -1,11 +1,16 @@
 import { Injectable } from '@angular/core';
 import { CardWorkModel } from './card-work.model';
 import { DataService } from './data-service';
+import { BehaviorSubject } from 'rxjs';
 
 
 @Injectable()
 export class CardService {
   cardList: CardWorkModel[] = [];
+
+  private cardCargar: CardWorkModel;
+
+  private cardObs : BehaviorSubject<CardWorkModel> = new BehaviorSubject<CardWorkModel>({idCardWork:0, titulo:'', image:'', descripcion:'', referencia:''});
 
   constructor(private dataService: DataService){}
 
@@ -27,6 +32,15 @@ export class CardService {
         this.cardList.push(card);
       }
     );
+  }
+
+  cargarCard(card: CardWorkModel){
+    this.cardCargar = card;
+    this.cardObs.next(this.cardCargar);
+  }
+
+  get cardObvs(){
+    return this.cardObs.asObservable();
   }
 
   encontrarCardWork(id:number){

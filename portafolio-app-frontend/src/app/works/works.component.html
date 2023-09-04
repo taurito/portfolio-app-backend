@@ -1,7 +1,9 @@
 
 <div class="globa-container">
   <div style="text-align: center">
-    <button class="btnAgragar" style="cursor: pointer"type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">+</button>
+    <button *ngIf="userLoginOn" class="btn btn-info btn-circle btn-xl" style="cursor: pointer"type="button"  data-bs-toggle="modal" data-bs-target="#exampleModal">
+      <i class="bi bi-plus"></i>
+    </button>
   </div>
 
   <div class="flex-container">
@@ -15,8 +17,9 @@
       </div>
       <div class="card-footer">
         <div class="container">
-          <button type="button" class="btn btn-outline-primary" [routerLink]="['/cardWorks', cards.idCardWork]">Editar</button>
-        <button type="button" class="btn btn-outline-danger" (click)="eliminarCard(cards)">Eliminar</button>
+          <button *ngIf="userLoginOn" type="button" class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" (click)="cargarCard(cards)">Editar</button>
+          <button *ngIf="userLoginOn" type="button" class="btn btn-outline-danger" (click)="eliminarCard(cards)">Eliminar</button>
+          <button *ngIf="!userLoginOn" type="button" class="btn btn-outline-primary">Ver mas</button>
         </div>
       </div>
     </div>

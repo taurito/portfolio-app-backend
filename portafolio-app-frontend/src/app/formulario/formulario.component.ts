@@ -19,6 +19,7 @@ export class FormularioComponent implements OnInit {
   DesTextAreA: String;
   RefInput: String;
 
+
   public file: File;
   public previsualizacion: string;
 
@@ -31,17 +32,22 @@ export class FormularioComponent implements OnInit {
               }
 
   ngOnInit(): void {
-    this.idCardWork = this.route.snapshot.params['idCardWork'];
-    if(this.idCardWork != null){
-      const card = this.cardService.encontrarCardWork(this.idCardWork);
-      if(card != null){
-        this.tituloInput = card.titulo;
-        this.imageInput = card.image;
-        this.DesTextAreA = card.descripcion;
-        this.RefInput = card.referencia;
-        console.log("card encontrado:" + this.imageInput);
+    //this.idCardWork = this.route.snapshot.params['idCardWork'];
+    this.cardService.cardObvs.subscribe(card =>{
+      const idCar = card.idCardWork;
+      if(idCar != null){
+        const card = this.cardService.encontrarCardWork(idCar);
+        if(card != null){
+          this.idCardWork = card.idCardWork;
+          this.tituloInput = card.titulo;
+          this.imageInput = card.image;
+          this.DesTextAreA = card.descripcion;
+          this.RefInput = card.referencia;
+          console.log("card encontrado:" + idCar);
+        }
       }
-    }
+    })
+
   }
   capturarFile(event: any){
     this.file = event.target.files[0];
@@ -58,6 +64,7 @@ export class FormularioComponent implements OnInit {
     const cardGuardar = new CardWorkModel(this.idCardWork, this.tituloInput, this.imageInput ,this.DesTextAreA, this.RefInput);
     if(this.idCardWork != null){
       this.cardService.modificarCardWork(this.idCardWork, cardGuardar);
+      console.log("se esta modificando el card:" + this.tituloInput)
     }
     else{
       this.cardService.agregarCardWork(cardGuardar);

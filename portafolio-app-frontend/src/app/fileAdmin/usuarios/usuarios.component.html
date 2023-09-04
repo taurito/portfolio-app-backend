@@ -1,1 +1,33 @@
-<p>usuarios works!</p>
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Nombre Completo</th>
+      <th scope="col">Email</th>
+      <th scope="col">Rol</th>
+      <th scope="col"></th>
+    </tr>
+  </thead>
+  <tbody *ngFor="let usuarios of userList">
+    <tr>
+      <th scope="row">{{indice+1}}</th>
+      <td>{{usuarios.userName}}</td>
+      <td>{{usuarios.email}}</td>
+      <td>{{usuarios.rol}}</td>
+      <td>
+        <div class="iconsDeMod">
+          <button type="button" class="btn btn-outline-info" data-bs-toggle="modal" data-bs-target="#exampleModalRe" (click)="cargarUsuario(usuarios)">
+            <i class="bi bi-pencil-square" style="cursor: pointer"></i>
+          </button>
+          <button type="button" class="btn btn-outline-danger" (click)="eliminarUsuario(usuarios)"><i class="bi bi-trash3" style="cursor: pointer"></i></button>
+        </div>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<div class="btnUser">
+  <button type="button" class="btn btn-info btn-circle btn-xl" data-bs-toggle="modal" data-bs-target="#exampleModalRe"><i class="bi bi-person-add"></i></button>
+</div>
+
+<app-registro-usuario></app-registro-usuario>

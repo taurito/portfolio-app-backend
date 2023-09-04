@@ -13,6 +13,7 @@
       <div class="modal-body">
         <form [formGroup]="registerForm" (ngSubmit)="registrarUsuario()">
           <div>
+            <input *ngIf="noMostrar" formControlName ="idUser" type="number" class="form-control" id="imputId">
             <label for="imputName" class="form-label">Nombre Usuario</label>
             <input formControlName ="userName" type="text" class="form-control" id="imputName">
             <div *ngIf="userName.invalid && (userName.dirty || userName.touched)"
@@ -44,8 +45,8 @@
             <label for="password" class="form-label">Contraseña</label>
             <div class="imputIcon">
               <input formControlName ="password" type="password" class="form-control" id="passwordField">
-              <i *ngIf="!passwordVisible" class="bi bi-eye-slash" id="toggleIcon" (click)="mostrarContrasena()"></i>
-              <i *ngIf="passwordVisible" class="bi bi-eye" id="toggleIcon" (click)="mostrarContrasena()"></i>
+              <i *ngIf="!passwordVisible" class="bi bi-eye-slash" id="toggleIcon" (click)="mostrarContrasena()" style="cursor: pointer"></i>
+              <i *ngIf="passwordVisible" class="bi bi-eye" id="toggleIcon" (click)="mostrarContrasena()" style="cursor: pointer"></i>
             </div>
             <div *ngIf="password.invalid && (password.dirty || password.touched)"
                 class="text-danger">

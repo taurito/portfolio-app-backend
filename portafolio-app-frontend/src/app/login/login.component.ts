@@ -42,12 +42,12 @@ export class LoginComponent implements OnInit {
         complete: () =>{
           console.info("Login completo");
           this.router.navigate(['./admin']);
-          $("#exampleModal").modal('hide');
+          $("#modalLogin").modal('hide');
           this.loginForm.reset();
         }
       })
 
-      //this.router.navigateByUrl('/sobreMi');
+
     }
     else{
       alert("error al ingresar los datos")
